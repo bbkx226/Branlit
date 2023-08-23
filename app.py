@@ -2,8 +2,11 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from langchain.chat_models import ChatOpenAI
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -26,12 +29,26 @@ def get_text_chunks(raw_text):
 
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
+    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
+
+def get_conversation_chain(vectorstore):
+    llm = ChatOpenAI()
+    memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
+    conversation_chain = ConversationalRetrievalChain.from_llm(
+        llm=llm,
+        retriever=vectorstore.as_retriever(),
+        memory=memory,
+    )
+    return conversation_chain
 
 def main():
     load_dotenv()
     st.set_page_config(page_title="PDFPal", page_icon=":books:")
+
+    if "conversation" not in st.session_state:
+        st.session_state.conversation = None
 
     st.header("Chat with multiple PDFs at once :books:")
     st.text_input("Ask question about your documents:")
@@ -52,6 +69,8 @@ def main():
                 # Create Vector Store
                 vectorstore = get_vectorstore(text_chunks)
 
+                # Create Conversation chain
+                st.session_state.conversation = get_conversation_chain(vectorstore)
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()
