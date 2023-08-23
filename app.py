@@ -12,7 +12,16 @@ def get_pdf_text(pdf_docs):
             text += page.extract_text()
     return text
 
-
+def get_text_chunks(raw_text):
+    # To ensure the model gets the meaning of the full sentence
+    text_splitter = CharacterTextSplitter(
+        separator="\n",
+        chunk_size=1000,
+        chunk_overlap=200,
+        length_function=len
+    )
+    chunks = text_splitter.split_text(raw_text)
+    return chunks
 
 def main():
     load_dotenv()
@@ -31,10 +40,11 @@ def main():
                 st.write(raw_text)
 
                 # Get the text chunks
-
+                text_chunks = get_text_chunks(raw_text)
+                st.write(text_chunks) 
 
                 # Create Vector Store
-
+                
 
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
