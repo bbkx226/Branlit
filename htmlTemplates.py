@@ -71,4 +71,14 @@ user_template = '''
 </div>
 '''
 
-# Now you can use these templates and CSS styles in your application
+button_css = '''
+<style>
+div[class="row-widget stButton"] > button {
+    width: 20%;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 20px;
+} 
+</style>
+'''
+

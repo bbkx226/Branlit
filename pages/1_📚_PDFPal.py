@@ -45,6 +45,7 @@ def get_conversation_chain(vectorstore):
     return conversation_chain
 
 def handle_userinput(user_question):
+
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
 
@@ -55,38 +56,53 @@ def handle_userinput(user_question):
             st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
 
 def main():
-    load_dotenv()
-    st.set_page_config(page_title="PDFPal", page_icon=":books:")
 
+    load_dotenv() # load environment variables from a .env file
+    
+    press_button = False
+
+    st.set_page_config(page_title="PDFPal", page_icon="📚")
+    # https://i.postimg.cc/P5phFqqh/bot.png
     st.write(css, unsafe_allow_html=True)
 
-    if "conversation" not in st.session_state:
-        st.session_state.conversation = None
+    st.markdown("# PDFPal")
+    st.sidebar.header("PDFPal")
 
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = None
+    if "conversation" not in st.session_state: st.session_state.conversation = None
 
-    st.header("Chat with multiple PDFs at once :books:")
-    user_question = st.text_input("Ask question about your documents:")
-    if user_question:
-        handle_userinput(user_question)
+    if "chat_history" not in st.session_state: st.session_state.chat_history = None
 
-    with st.sidebar:
-        st.subheader('Your documents')
-        pdf_docs = st.file_uploader("Upload your PDFs here and click on Process", accept_multiple_files=True)
-        if st.button("Process"):
-            with st.spinner("Processing your documents..."):
-                # Get PDF text
-                raw_text = get_pdf_text(pdf_docs)
+    if "process_pressed" not in st.session_state: st.session_state.process_pressed = False
+    
+    st.header("Ask anything. Know everything. :brain:")
+    st.write("""---""") 
+    st.subheader('Your PDFs')
+    
+    pdf_docs = st.file_uploader("Drop files, click Process, watch our AI work its magic!", accept_multiple_files=True)
 
-                # Get the text chunks
-                text_chunks = get_text_chunks(raw_text)
+    if pdf_docs:
+        press_button = st.button("Process")
 
-                # Create Vector Store
-                vectorstore = get_vectorstore(text_chunks)
+    if press_button:
+        with st.spinner("Processing your documents..."):
+            # Get PDF text
+            raw_text = get_pdf_text(pdf_docs)
 
-                # Create Conversation chain
-                st.session_state.conversation = get_conversation_chain(vectorstore)
+            # Get the text chunks
+            text_chunks = get_text_chunks(raw_text)
+
+            # Create Vector Store
+            vectorstore = get_vectorstore(text_chunks)
+
+            # Create Conversation chain
+            st.session_state.conversation = get_conversation_chain(vectorstore)
+
+            st.session_state.process_pressed = True
+
+    if st.session_state.process_pressed:   
+        user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...")
+        if user_question: 
+            handle_userinput(user_question)
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()
