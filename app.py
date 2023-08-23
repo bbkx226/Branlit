@@ -2,7 +2,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -22,6 +23,11 @@ def get_text_chunks(raw_text):
     )
     chunks = text_splitter.split_text(raw_text)
     return chunks
+
+def get_vectorstore(text_chunks):
+    embeddings = OpenAIEmbeddings()
+    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    return vectorstore
 
 def main():
     load_dotenv()
@@ -44,7 +50,7 @@ def main():
                 st.write(text_chunks) 
 
                 # Create Vector Store
-                
+                vectorstore = get_vectorstore(text_chunks)
 
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
