@@ -4,13 +4,19 @@ import streamlit as st
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
+import matplotlib
+import matplotlib.pyplot as plt
+
 
 def main():
+    
     load_dotenv()
-
+    matplotlib.use('TkAgg')
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
     pandas_ai = PandasAI(llm)
+
+    st.set_page_config(page_title="BranHub", page_icon="📊")
 
     st.title("Prompt-driven analysis with PandasAI")
 
@@ -18,14 +24,20 @@ def main():
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
-        st.write(df.head(3))
+        st.write(df.head(5))
         prompt = st.text_area("Enter your prompt:")
 
         if st.button("Generate"):
             if prompt:
-                st.write("PandasAI is generating an answer, please wait...")
-                pandas_ai.run(df, prompt=prompt)
+                with st.spinner("Generating response..."):
+                    answer = pandas_ai.run(df,prompt)
+                    fig_number = plt.get_fignums()
+                    if fig_number:
+                        st.pyplot(plt.gcf())
+                    else:
+                        st.write(answer)
             else:
                 st.warning("Please enter a prompt.")
-if __name__ == '__main__': # define code that should only run when the script is executed directly
+                
+if __name__ == '__main__':
     main()

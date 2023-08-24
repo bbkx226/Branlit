@@ -66,7 +66,6 @@ def main():
     st.write(css, unsafe_allow_html=True)
 
     st.markdown("# PDFPal")
-    st.sidebar.header("PDFPal")
 
     if "conversation" not in st.session_state: st.session_state.conversation = None
 
