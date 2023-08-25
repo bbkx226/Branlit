@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+from streamlit import session_state
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -93,6 +95,17 @@ css = '''
 </style>
 '''
 
+text_input_css = """  
+<style>
+    .element-container:has(> div[class="row-widget stTextInput"]) {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0;
+        right: 0;
+    }
+</style>  
+"""
+
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf_doc in pdf_docs:
@@ -128,16 +141,6 @@ def get_conversation_chain(vectorstore):
     )
     return conversation_chain
 
-def add_chat_focus_script():
-    auto_focus = '''
-    <script>
-        const chatContainer = document.getElementById('bot');
-        chatContainer.scrollIntoView();
-        chatContainer.focus();
-    </script>
-    '''
-    st.markdown(auto_focus, unsafe_allow_html=True)
-    
 def handle_userinput(user_question):
 
     response = st.session_state.conversation({'question': user_question})
@@ -148,20 +151,19 @@ def handle_userinput(user_question):
             st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
         else:
             st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
-
-    add_chat_focus_script()
-
 def main():
 
     load_dotenv() # load environment variables from a .env file
-    
+
     press_button = False
     press_enter = False
 
     st.set_page_config(page_title="📚 PDFPal", page_icon="📚")
     # https://i.postimg.cc/P5phFqqh/bot.png
     st.write(css, unsafe_allow_html=True)
-    
+    st.write(button_css, unsafe_allow_html=True)
+    st.markdown(text_input_css, unsafe_allow_html=True) 
+
     st.title("📚 PDFPal")
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
@@ -175,6 +177,17 @@ def main():
     st.write("""---""") 
     st.subheader('Your PDFs')
     
+    st.markdown('''<p style="color:red;">PDF-less? We've got you covered. Snag an awesome sample with one click below!</p>''', unsafe_allow_html=True)
+
+    os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
+    with open("AWS_certification_paths.pdf", "rb") as file:
+        st.download_button(
+            label="Download PDF",
+            data=file,
+            file_name="AWS_certification_paths.pdf",
+        )
+            
+
     pdf_docs = st.file_uploader("Drop files, click Process, watch our AI work its magic!", accept_multiple_files=True)
 
     if pdf_docs:
@@ -197,11 +210,13 @@ def main():
             st.session_state.buffer = True
 
     if st.session_state.buffer:   
-        user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...")
+        user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...", key="user_input_before")
         press_enter = st.button("Enter!")
+        
 
     if press_enter: 
-        handle_userinput(user_question)
+        st.session_state.buffer = False
+        handle_userinput(user_question)        
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()
