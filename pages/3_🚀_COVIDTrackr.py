@@ -85,20 +85,11 @@ def main():
     fig2 = px.line(linechart, x = "month_year", y="total_cases", labels = {"total_cases": "Cases"},height=500, width = 1000,template="gridon")
     st.plotly_chart(fig2,use_container_width=True)    
 
-
     st.subheader("Hierarchical view of Cases using TreeMap")
     fig3 = px.treemap(location_df, path = ["continent","location", "total_deaths"], values = "total_deaths", hover_data = ["total_deaths"],
                     color = "total_cases")
     fig3.update_layout(width = 800, height = 650)
     st.plotly_chart(fig3, use_container_width=True)
-
-    # Create a scatter plot
-    data1 = px.scatter(continent_df, x = "continent", y = "total_cases")
-    data1['layout'].update(title="Relationship between Continent and Total Cases using Scatter Plot.",
-                        titlefont = dict(size=20),xaxis = dict(title="Continent",titlefont=dict(size=19)),
-                        yaxis = dict(title = "Total Cases", titlefont = dict(size=19)))
-    st.plotly_chart(data1,use_container_width=True)
-
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()
