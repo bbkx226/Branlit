@@ -6,7 +6,9 @@ from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
 import matplotlib
 import matplotlib.pyplot as plt
+import warnings
 
+warnings.filterwarnings("ignore")
 
 def main():
     
@@ -18,9 +20,11 @@ def main():
 
     st.set_page_config(page_title="BranHub", page_icon="📊")
 
-    st.title("Prompt-driven analysis with PandasAI")
-
-    uploaded_file = st.file_uploader("Upload a CSV file for analysis", type=['csv'])
+    st.title("📊 BranHub: The AI Data Analyst")
+    st.header("PDFs In, Answers Out! ⚡")
+    st.write("""---""") 
+    st.subheader('Your CSVs')
+    uploaded_file = st.file_uploader(":file_folder: Upload a CSV file for analysis", type=['csv'])
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)

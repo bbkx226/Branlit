@@ -9,18 +9,14 @@ warnings.filterwarnings("ignore")
 
 def main():
 
-    st.set_page_config(page_title="COVIDTrackr", page_icon=":rocket:", layout="wide")
-    st.title(" :rocket: Coronavirus EDA")
+    st.set_page_config(page_title="COVIDTrackr", page_icon="📈", layout="wide")
+    st.title(" 📈 COVIDTrackr")
+    st.header("Together, We Analyze, Together, We Defeat. 🔬")
+    st.write("""---""") 
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
-    fl = st.file_uploader(":file_folder: Upload a file",type=(["csv","txt","xlsx","xls"]))
-    if fl is not None:
-        filename = fl.name
-        st.write(filename)
-        df = pd.read_csv(filename, encoding = "ISO-8859-1")
-    else:
-        os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
-        df = pd.read_csv("covid-data.csv", encoding = "ISO-8859-1")
+    os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
+    df = pd.read_csv("covid-data.csv", encoding = "ISO-8859-1")
 
     col1, col2 = st.columns((2))
     df["date"] = pd.to_datetime(df["date"])
