@@ -1,40 +1,88 @@
 import streamlit as st
+from PIL import Image
+import requests
+import io
 
-button_css = '''
-<style>
-div[class="row-widget stButton"] > button {
-    width: 20%;
-    height: 60px;
-    border-radius: 5px;
-    font-size: 20px;
-} 
-</style>
-'''
+def main():
+    st.set_page_config(page_title="Branlit", page_icon=":brain:") 
 
-# Set page config
-st.set_page_config(page_title="Branlit", page_icon=":brain:", layout="centered") 
+    st.markdown("<h1 style='text-align: center; color: green;'>Welcome to Branlit! 🧠</h1>", unsafe_allow_html=True)
 
-st.write("")
+    st.markdown("<h3>Why Branlit?</h3>", unsafe_allow_html=True)
 
-# Add CSS style
-st.markdown(button_css, unsafe_allow_html=True)
+    st.write("""
+    I realized most students are trapped in a ChatGPT bubble. They use it for everything without realizing the vast AI world beyond! 
+    ChatGPT is just one star in a galaxy of large language models. I wanted to shine a light on the endless possibilities.
+    So I built Branlit as an AI playground - a one-stop shop to showcase different LLM features. Consider Branlit your AI tour guide! 
+    Here, you can go beyond surface level ChatGPT queries. 
+    """)
 
-# Page title 
-st.title("Welcome to Branlit! :wave:")
+    st.write("""
+    I designed Branlit to be an interactive learning tool. You can upload files, analyze data, and explore metrics.
+    My goal is to nourish your inner curiosity. To give you those a-ha AI moments. To help you level up your skills.
+    Branlit will expand your knowledge and unlock your potential. Let your inner genius flourish!
+    So buckle up, get ready to geek out over AI, and let's begin the journey!
+    """)
 
-# Info text
-st.write("This is the homepage for my cool new app. Here are some things you can do:")
+    st.markdown("---")
 
-st.sidebar.success("☝️☝️☝️ Features above ☝️☝️☝️")
+    st.markdown("<h3 style='text-align: center; color: green;'>Feature #1 - PDFPal 📚</h3>", unsafe_allow_html=True)
 
-# Button 1
-if st.button("Button 1"):
-    st.write("You clicked Button 1")
+    st.write("""
+    PDFPal allows you to upload multiple PDFs and ask questions about them. The AI will 
+    process the PDFs and give you answers!
+    """)
 
-# Button 2 
-if st.button("Button 2"):
-    st.write("You clicked Button 2")
+    st.write("""
+    For example, say a student has an assignment but doesn't fully understand the requirements.  
+    They can upload the assignment PDF and ask questions to clarify what needs to be done.
+    """)
 
-# Button 3
-if st.button("Button 3"):
-    st.write("You clicked Button 3")
+    st.markdown('> "I was totally confused by my essay assignment. The prompt was vague and the requirements confusing. I uploaded the PDF to PDFPal and asked it to explain the expectations and give tips. PDFPal clarified everything for me in simple steps - now I know exactly how to ace this essay!"')
+
+    # Show GIF demo
+    demo_gif = "https://i.imgur.com/WX7t4tF.gif" 
+    response = requests.get(demo_gif)
+    demo_bytes = io.BytesIO(response.content)
+    st.image(demo_bytes)
+
+    # Feature 2 - BranHub
+    st.markdown("<h3 style='text-align: center; color: green;'>Feature #2 - BranHub</h3>", unsafe_allow_html=True)
+
+    st.write("""
+    BranHub allows you to analyze and get insights from CSV data. Upload a CSV file and ask questions - 
+    the AI will process the data and provide answers!
+    """)
+
+    st.write("""
+    For a data analytics student working on a project, BranHub can help reveal trends and patterns they may have missed.
+    They can upload their CSV dataset and ask questions to do deeper analysis.
+    """)
+
+    st.markdown('> "I was analyzing customer data for a class project and felt totally lost in the numbers. Then I discovered BranHub! I uploaded my CSV file and started asking questions. BranHub found insights I never would have seen on my own. It perfectly summarized retention drivers and churn predictors!"')
+
+    demo_gif = "https://i.imgur.com/WX7t4tF.gif"
+    response = requests.get(demo_gif) 
+    demo_bytes = io.BytesIO(response.content)
+    st.image(demo_bytes)
+
+    # Feature 3 - COVIDTrackr
+    st.markdown("<h3 style='text-align: center; color: green;'>Extra Feature - COVIDTrackr</h3>", unsafe_allow_html=True)
+
+    st.write("""
+    COVIDTrackr is an analytics dashboard tracking COVID-19 data since 2020. It visualizes cases, deaths, and other metrics across countries and continents.
+    """)
+
+    st.write("""
+    After 3 years of COVID-19 impacting the world, COVIDTrackr helps people understand the full timeline and situation globally. Users can explore the interactive dashboards to see different trends.
+    """) 
+
+    st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 2023/08/25</p>''', unsafe_allow_html=True)
+
+    demo_gif = "https://i.imgur.com/WX7t4tF.gif"
+    response = requests.get(demo_gif)
+    demo_bytes = io.BytesIO(response.content)
+    st.image(demo_bytes)
+
+if __name__ == '__main__':
+    main()

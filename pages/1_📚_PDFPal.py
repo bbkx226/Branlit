@@ -7,6 +7,9 @@ from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
+import warnings
+
+warnings.filterwarnings("ignore")
 
 bot_template = '''
 <div class="chat-message bot">
@@ -28,12 +31,12 @@ user_template = '''
 
 button_css = '''
 <style>
-div[class="row-widget stButton"] > button {
-    width: 20%;
-    height: 60px;
-    border-radius: 5px;
-    font-size: 20px;
-} 
+    div[class="row-widget stButton"] > button {
+        width: 20%;
+        height: 60px;
+        border-radius: 5px;
+        font-size: 20px;
+    } 
 </style>
 '''
 
@@ -41,7 +44,6 @@ css = '''
 <style>
     body {
         font-family: 'Open Sans', sans-serif;
-        background-color: #f2f2f2;
     }
     .chat-message {
         padding: 1.5rem;
@@ -73,6 +75,7 @@ css = '''
         width: 80%;
         padding: 0 1.5rem;
         color: #fff;
+
     }
     @keyframes slideIn {
         0% {
@@ -125,6 +128,16 @@ def get_conversation_chain(vectorstore):
     )
     return conversation_chain
 
+def add_chat_focus_script():
+    auto_focus = '''
+    <script>
+        const chatContainer = document.getElementById('bot');
+        chatContainer.scrollIntoView();
+        chatContainer.focus();
+    </script>
+    '''
+    st.markdown(auto_focus, unsafe_allow_html=True)
+    
 def handle_userinput(user_question):
 
     response = st.session_state.conversation({'question': user_question})
@@ -136,23 +149,27 @@ def handle_userinput(user_question):
         else:
             st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
 
+    add_chat_focus_script()
+
 def main():
 
     load_dotenv() # load environment variables from a .env file
     
     press_button = False
+    press_enter = False
 
     st.set_page_config(page_title="📚 PDFPal", page_icon="📚")
     # https://i.postimg.cc/P5phFqqh/bot.png
     st.write(css, unsafe_allow_html=True)
-
+    
     st.title("📚 PDFPal")
+    st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
     if "conversation" not in st.session_state: st.session_state.conversation = None
 
     if "chat_history" not in st.session_state: st.session_state.chat_history = None
 
-    if "process_pressed" not in st.session_state: st.session_state.process_pressed = False
+    if "buffer" not in st.session_state: st.session_state.buffer = False
     
     st.header("Ask anything. Know everything. :brain:")
     st.write("""---""") 
@@ -177,12 +194,14 @@ def main():
             # Create Conversation chain
             st.session_state.conversation = get_conversation_chain(vectorstore)
 
-            st.session_state.process_pressed = True
+            st.session_state.buffer = True
 
-    if st.session_state.process_pressed:   
+    if st.session_state.buffer:   
         user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...")
-        if user_question: 
-            handle_userinput(user_question)
+        press_enter = st.button("Enter!")
+
+    if press_enter: 
+        handle_userinput(user_question)
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()

@@ -19,11 +19,11 @@ def main():
     pandas_ai = PandasAI(llm)
 
     st.set_page_config(page_title="BranHub", page_icon="📊")
-
+    st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
     st.title("📊 BranHub: The AI Data Analyst")
     st.header("PDFs In, Answers Out! ⚡")
     st.write("""---""") 
-    st.subheader('Your CSVs')
+    st.subheader('Your CSV')
     uploaded_file = st.file_uploader(":file_folder: Upload a CSV file for analysis", type=['csv'])
 
     if uploaded_file is not None:
