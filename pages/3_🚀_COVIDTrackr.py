@@ -69,6 +69,7 @@ def main():
 
     location_df = filtered_df.groupby('location').apply(lambda group: group[group['date'] == group['date'].max()])
     continent_df = filtered_df.groupby('continent').apply(lambda group: group[group['date'] == group['date'].max()])
+    monthly_cases = filtered_df.groupby(['month_year', 'location'])['total_cases'].last().reset_index()
 
     st.subheader("Location wise Cases")
     fig = px.bar(location_df, x = "location", y = "total_cases", color = "location", template="seaborn")
@@ -80,8 +81,7 @@ def main():
     st.plotly_chart(fig,use_container_width=True)
 
     st.subheader('Time Series Analysis')
-    # Filter for the last day of each month
-    linechart = pd.DataFrame(filtered_df.groupby(filtered_df["month_year"].dt.strftime("%Y : %b"))["total_cases"].sum()).reset_index()
+    linechart = pd.DataFrame(monthly_cases.groupby(monthly_cases["month_year"].dt.strftime("%Y : %b"))["total_cases"].sum()).reset_index()
     fig2 = px.line(linechart, x = "month_year", y="total_cases", labels = {"total_cases": "Cases"},height=500, width = 1000,template="gridon")
     st.plotly_chart(fig2,use_container_width=True)    
 
