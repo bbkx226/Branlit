@@ -173,12 +173,10 @@ def main():
 
     if "buffer" not in st.session_state: st.session_state.buffer = False
     
+    if "text_detector" not in st.session_state: st.session_state.text_detector = False
+
     st.header("Ask anything. Know everything. :brain:")
     st.write("""---""") 
-    st.subheader('Your PDFs')
-    
-    st.markdown('''<p style="color:red;">PDF-less? We've got you covered. Snag an awesome sample with one click below!</p>''', unsafe_allow_html=True)
-
     os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
     with open("AWS_certification_paths.pdf", "rb") as file:
         st.download_button(
@@ -186,7 +184,8 @@ def main():
             data=file,
             file_name="AWS_certification_paths.pdf",
         )
-            
+    st.markdown('''<p style="color:red;">PDF-less? We've got you covered. Snag an awesome sample with one click below!</p>''', unsafe_allow_html=True)
+    st.subheader('Your PDFs')
 
     pdf_docs = st.file_uploader("Drop files, click Process, watch our AI work its magic!", accept_multiple_files=True)
 
@@ -211,12 +210,15 @@ def main():
 
     if st.session_state.buffer:   
         user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...", key="user_input_before")
+        if user_question:
+            st.session_state.text_detector = True
         press_enter = st.button("Enter!")
         
-
-    if press_enter: 
+    if press_enter and st.session_state.text_detector:
         st.session_state.buffer = False
-        handle_userinput(user_question)        
+        handle_userinput(user_question)  
+    if press_enter and not st.session_state.text_detector:
+        st.warning("Please enter a prompt.")
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()

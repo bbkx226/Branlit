@@ -23,6 +23,17 @@ def main():
     st.title("📊 BranHub: The AI Data Analyst")
     st.header("PDFs In, Answers Out! ⚡")
     st.write("""---""") 
+
+    os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
+    with open("covid-data.csv", "rb") as file:
+        st.download_button(
+            label="Download CSV",
+            data=file,
+            file_name="covid-data.csv",
+        )
+        
+    st.markdown('''<p style="color:red;">CSV got you down? Lift your spirits with our phenomenal COVID data!</p>''', unsafe_allow_html=True)
+
     st.subheader('Your CSV')
     uploaded_file = st.file_uploader(":file_folder: Upload a CSV file for analysis", type=['csv'])
 
