@@ -1873,3 +1873,158 @@ min        1.000000    0.000000    1.000000                      NaN   NaN    0.
 75%      668.500000    1.000000    3.000000                      NaN   NaN   38.000000    1.000000    0.000000     NaN   31.000000      NaN      NaN
 max      891.000000    1.000000    3.000000                      NaN   NaN   80.000000    8.000000    6.000000     NaN  512.329200      NaN      NaN}
 2023-08-26 16:20:30 [INFO] Executed in: 12.15952754020691s
+2023-08-26 16:26:19 [INFO] Question: What is this CSV about?
+2023-08-26 16:26:19 [INFO] Running PandasAI with openai LLM...
+2023-08-26 16:26:19 [INFO] Prompt ID: bde09582-6ca4-4c22-b5ec-2175a1ed3a5a
+2023-08-26 16:26:28 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Get the metadata of the first dataframe
+    metadata = dfs[0].columns.tolist()
+    
+    # Prepare the output text
+    output_text = "This CSV contains data about COVID-19 cases and related information."
+    
+    # Output the result as text
+    result = {
+        "type": "text",
+        "value": output_text
+    }
+    
+    return result
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 16:26:28 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    metadata = dfs[0].columns.tolist()
+    output_text = 'This CSV contains data about COVID-19 cases and related information.'
+    result = {'type': 'text', 'value': output_text}
+    return result
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 16:26:28 [INFO] Answer: {'type': 'text', 'value': 'This CSV contains data about COVID-19 cases and related information.'}
+2023-08-26 16:26:28 [INFO] Executed in: 9.767437219619751s
+2023-08-26 16:29:01 [INFO] Loading faiss with AVX2 support.
+2023-08-26 16:29:01 [INFO] Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2023-08-26 16:29:01 [INFO] Loading faiss.
+2023-08-26 16:29:01 [INFO] Successfully loaded faiss.
+2023-08-26 16:33:24 [INFO] Question: What is this CSV about?
+2023-08-26 16:33:24 [INFO] Running PandasAI with openai LLM...
+2023-08-26 16:33:24 [INFO] Prompt ID: f97d4ccc-966c-478c-9224-2feb8b7155c7
+2023-08-26 16:33:24 [INFO] Using cached response
+2023-08-26 16:33:24 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Get the metadata of the first dataframe
+    metadata = dfs[0].columns.tolist()
+    
+    # Prepare the output text
+    output_text = "This CSV contains data about COVID-19 cases and related information."
+    
+    # Output the result as text
+    result = {
+        "type": "text",
+        "value": output_text
+    }
+    
+    return result
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 16:33:24 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    metadata = dfs[0].columns.tolist()
+    output_text = 'This CSV contains data about COVID-19 cases and related information.'
+    result = {'type': 'text', 'value': output_text}
+    return result
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 16:33:24 [INFO] Answer: {'type': 'text', 'value': 'This CSV contains data about COVID-19 cases and related information.'}
+2023-08-26 16:33:24 [INFO] Executed in: 0.0020112991333007812s
+2023-08-26 16:33:35 [INFO] Question: Which country is more likely to survive?
+2023-08-26 16:33:35 [INFO] Running PandasAI with openai LLM...
+2023-08-26 16:33:35 [INFO] Prompt ID: ba177059-f1cd-4ec3-8020-8c5c52aa8a59
+2023-08-26 16:33:49 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    # Prepare: Filter the data to include only the necessary columns
+    df = dfs[0][['location', 'total_cases', 'total_deaths', 'population']]
+    
+    # Process: Calculate the survival rate for each country
+    df['survival_rate'] = (df['total_cases'] - df['total_deaths']) / df['population']
+    
+    # Analyze: Find the country with the highest survival rate
+    country_with_highest_survival_rate = df.loc[df['survival_rate'].idxmax(), 'location']
+    
+    # Output: Return the country with the highest survival rate
+    return {"type": "text", "value": f"The country with the highest survival rate is {country_with_highest_survival_rate}."}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 16:33:49 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0][['location', 'total_cases', 'total_deaths', 'population']]
+    df['survival_rate'] = (df['total_cases'] - df['total_deaths']) / df['population']
+    country_with_highest_survival_rate = df.loc[df['survival_rate'].idxmax(), 'location']
+    return {'type': 'text', 'value': f'The country with the highest survival rate is {country_with_highest_survival_rate}.'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 16:33:49 [INFO] Answer: {'type': 'text', 'value': 'The country with the highest survival rate is Cyprus.'}
+2023-08-26 16:33:49 [INFO] Executed in: 13.263951063156128s

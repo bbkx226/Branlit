@@ -40,11 +40,10 @@ def main():
 
     st.markdown('> "I was totally confused by my essay assignment. The prompt was vague and the requirements confusing. I uploaded the PDF to PDFPal and asked it to explain the expectations and give tips. PDFPal clarified everything for me in simple steps - now I know exactly how to ace this essay!"')
 
-    # Show GIF demo
-    demo_gif = "https://i.imgur.com/WX7t4tF.gif" 
-    response = requests.get(demo_gif)
-    demo_bytes = io.BytesIO(response.content)
-    st.image(demo_bytes)
+    video_file = open('./files/pdfpal.mkv', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
+    st.markdown("---")
 
     # Feature 2 - BranHub
     st.markdown("<h3 style='text-align: center; color: green;'>Feature #2 - BranHub</h3>", unsafe_allow_html=True)
@@ -61,12 +60,12 @@ def main():
 
     st.markdown('> "I was analyzing customer data for a class project and felt totally lost in the numbers. Then I discovered BranHub! I uploaded my CSV file and started asking questions. BranHub found insights I never would have seen on my own. It perfectly summarized retention drivers and churn predictors!"')
 
-    demo_gif = "https://i.imgur.com/WX7t4tF.gif"
-    response = requests.get(demo_gif) 
-    demo_bytes = io.BytesIO(response.content)
-    st.image(demo_bytes)
+    video_file = open('./files/branhub.mp4', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
+    st.markdown("---")
 
-    # Feature 3 - COVIDTrackr
+    # Extra Feature - COVIDTrackr
     st.markdown("<h3 style='text-align: center; color: green;'>Extra Feature - COVIDTrackr</h3>", unsafe_allow_html=True)
 
     st.write("""
@@ -78,11 +77,64 @@ def main():
     """) 
 
     st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 23th Aug 2023</p>''', unsafe_allow_html=True)
+    
+    video_file = open('./files/covidtrackr.mkv', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
+    st.markdown("---")
 
-    demo_gif = "https://i.imgur.com/WX7t4tF.gif"
-    response = requests.get(demo_gif)
-    demo_bytes = io.BytesIO(response.content)
-    st.image(demo_bytes)
+    st.markdown("<h3 style='text-align: center; color: green;'>You're not satisfied with these?</h3>", unsafe_allow_html=True)
+    st.write("""
+    Check out my other projects that have harnessed the power of Large Language Models (LLMs). 
+    Explore the AI world beyond Branlit!
+    """)
+
+    # Create a 2x2 grid layout for buttons
+    col1, col2 = st.columns(2)  # Two columns for two rows of buttons
+
+    # Button 1
+    with col1:
+        st.markdown(
+            """
+            <a href='https://brandongpt-summarizer.web.app/' class='custom-button' style='text-decoration: none;'>
+                <img src='./files/aisummarizer.png' class='button-image'/>
+                <p class='button-text'>Articles Summarizer</p>
+            </a>
+            """
+            , unsafe_allow_html=True)
+
+    # Button 2
+    with col2:
+        st.markdown(
+            """
+            <a href='https://imagegeneratorai-6e92d.web.app/' class='custom-button' style='text-decoration: none;'>
+                <img src='./files/aimage.png' class='button-image'/>
+                <p class='button-text'>AI Image Generator</p>
+            </a>
+            """
+            , unsafe_allow_html=True)
+
+    # Button 3
+    with col1:
+        st.markdown(
+            """
+            <a href='https://quizbraniac.vercel.app/' class='custom-button' style='text-decoration: none;'>
+                <img src='./files/quizbraniacbg.png' class='button-image'/>
+                <p class='button-text'>QuizBraniac</p>
+            </a>
+            """
+            , unsafe_allow_html=True)
+
+    # Button 4
+    with col2:
+        st.markdown(
+            """
+            <a href='https://ai-verse.vercel.app/' class='custom-button' style='text-decoration: none;'>
+                <img src='./files/ai.png' class='button-image'/>
+                <p class='button-text'>AI-verse Community</p>
+            </a>
+            """
+            , unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
