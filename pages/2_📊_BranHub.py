@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import warnings
@@ -14,6 +15,7 @@ def main():
     load_dotenv()
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
+    matplotlib.use('agg')
     pandas_ai = PandasAI(llm, save_charts=True)
     st.set_page_config(page_title="BranHub", page_icon="📊")
     st.set_option('deprecation.showPyplotGlobalUse', False)
