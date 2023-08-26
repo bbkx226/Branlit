@@ -10,12 +10,12 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def main():
-    st.set_page_config(page_title="BranHub", page_icon="📊")
+def main():  
     load_dotenv()
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
     pandas_ai = PandasAI(llm, save_charts=True)
+    st.set_page_config(page_title="BranHub", page_icon="📊")
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
     st.title("📊 BranHub: The AI Data Analyst")
@@ -43,7 +43,7 @@ def main():
         if st.button("Generate"):
             if prompt:
                 with st.spinner("Generating response..."):
-                    answer = pandas_ai.run(st.session_state.df,prompt)
+                    answer = pandas_ai.run(df,prompt)
 
                     fig_number = plt.get_fignums()
                     if fig_number:
