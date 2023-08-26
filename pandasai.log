@@ -1825,3 +1825,51 @@ result = analyze_data(dfs)
 2023-08-26 16:20:18 [INFO] Question: Tell me what is this csv about
 2023-08-26 16:20:18 [INFO] Running PandasAI with openai LLM...
 2023-08-26 16:20:18 [INFO] Prompt ID: 9a1e5697-70e5-4dae-963c-7a8c571e8874
+2023-08-26 16:20:30 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    description = df.describe(include='all')
+    return {"type": "dataframe", "value": description}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 16:20:30 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    description = df.describe(include='all')
+    return {'type': 'dataframe', 'value': description}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 16:20:30 [INFO] Answer: {'type': 'dataframe', 'value':         PassengerId    Survived      Pclass                     Name   Sex         Age       SibSp       Parch  Ticket        Fare    Cabin Embarked
+count    891.000000  891.000000  891.000000                      891   891  714.000000  891.000000  891.000000     891  891.000000      204      889
+unique          NaN         NaN         NaN                      891     2         NaN         NaN         NaN     681         NaN      147        3
+top             NaN         NaN         NaN  Braund, Mr. Owen Harris  male         NaN         NaN         NaN  347082         NaN  B96 B98        S
+freq            NaN         NaN         NaN                        1   577         NaN         NaN         NaN       7         NaN        4      644
+mean     446.000000    0.383838    2.308642                      NaN   NaN   29.699118    0.523008    0.381594     NaN   32.204208      NaN      NaN
+std      257.353842    0.486592    0.836071                      NaN   NaN   14.526497    1.102743    0.806057     NaN   49.693429      NaN      NaN
+min        1.000000    0.000000    1.000000                      NaN   NaN    0.420000    0.000000    0.000000     NaN    0.000000      NaN      NaN
+25%      223.500000    0.000000    2.000000                      NaN   NaN   20.125000    0.000000    0.000000     NaN    7.910400      NaN      NaN
+50%      446.000000    0.000000    3.000000                      NaN   NaN   28.000000    0.000000    0.000000     NaN   14.454200      NaN      NaN
+75%      668.500000    1.000000    3.000000                      NaN   NaN   38.000000    1.000000    0.000000     NaN   31.000000      NaN      NaN
+max      891.000000    1.000000    3.000000                      NaN   NaN   80.000000    8.000000    6.000000     NaN  512.329200      NaN      NaN}
+2023-08-26 16:20:30 [INFO] Executed in: 12.15952754020691s
