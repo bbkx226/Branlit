@@ -147,7 +147,7 @@ def main():
     # Filter out rows with zero values
     location_total_cases = location_total_cases[(location_total_cases['total_deaths_change'] != 0) & (location_total_cases['total_cases_change'] != 0)]
 
-    fig3 = px.treemap(location_total_cases, path=["continent", "location"], values="total_deaths_change",
+    fig3 = px.treemap(location_total_cases, path=["continent", "location", "total_deaths_change"], values="total_deaths_change",
                     hover_data=["total_deaths_change", "total_cases_change"], color="total_cases_change")
 
     fig3.update_layout(width=800, height=650)

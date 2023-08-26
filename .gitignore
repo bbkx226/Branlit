@@ -1,5 +1,2 @@
 .env
 __pycache__
-pandasai.log
-cache
-exports

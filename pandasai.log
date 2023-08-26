@@ -1,0 +1,236 @@
+2023-08-26 14:39:10 [INFO] Question: Generate me a plot graph of total death case of each continent
+2023-08-26 14:39:10 [INFO] Running PandasAI with openai LLM...
+2023-08-26 14:39:10 [INFO] Prompt ID: 88cdafe2-88ed-44ba-a0f9-99e197d6d2ce
+2023-08-26 14:39:21 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    # Group the data by continent and calculate the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot of the total deaths by continent
+    plt.figure(figsize=(10, 6))
+    total_deaths_by_continent.plot(kind='bar')
+    plt.title('Total Deaths by Continent')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    
+    # Return the path of the plot image
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 14:39:21 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.figure(figsize=(10, 6))
+    total_deaths_by_continent.plot(kind='bar')
+    plt.title('Total Deaths by Continent')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig('exports/charts/temp_chart.png')
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 14:39:22 [WARNING] Error of executing code
+2023-08-26 14:39:22 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-26 14:39:22 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-26 14:39:33 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-26 14:39:33 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-26 14:39:42 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.figure(figsize=(10, 6))
+    total_deaths_by_continent.plot(kind='bar')
+    plt.title('Total Deaths by Continent')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig('exports/charts/temp_chart.png')
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 14:39:43 [WARNING] Error of executing code
+2023-08-26 14:42:35 [INFO] Question: Generate a plot graph that shows the total death case of each continent
+2023-08-26 14:42:35 [INFO] Running PandasAI with openai LLM...
+2023-08-26 14:42:35 [INFO] Prompt ID: 42c0a78b-0fe1-4f41-9f66-2f9ccc87cd4f
+2023-08-26 14:42:45 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Group the data by continent and calculate the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot of the total deaths by continent
+    plt.figure(figsize=(10, 6))
+    total_deaths_by_continent.plot(kind='bar')
+    plt.title('Total Deaths by Continent')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    
+    # Return the path of the plot image
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 14:42:45 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.figure(figsize=(10, 6))
+    total_deaths_by_continent.plot(kind='bar')
+    plt.title('Total Deaths by Continent')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig('exports/charts/temp_chart.png')
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 14:42:46 [WARNING] Error of executing code
+2023-08-26 14:42:46 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-26 14:42:46 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-26 14:42:57 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-26 14:42:57 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-26 14:44:41 [INFO] Question: Generate a plot graph that shows the total deaths of each continent
+2023-08-26 14:44:41 [INFO] Running PandasAI with openai LLM...
+2023-08-26 14:44:41 [INFO] Prompt ID: 5cf21b26-c93f-402b-b19d-528fa701e0c5
+2023-08-26 14:44:51 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    # Group by continent and sum the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 14:44:51 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 14:44:52 [WARNING] Error of executing code
+2023-08-26 14:44:52 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-26 14:44:52 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-26 14:45:03 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-26 14:45:03 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-26 14:45:13 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 14:45:13 [WARNING] Error of executing code
