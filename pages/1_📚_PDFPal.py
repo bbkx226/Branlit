@@ -207,7 +207,8 @@ def main():
             st.session_state.conversation = get_conversation_chain(vectorstore)
 
             st.session_state.buffer = True
-
+            
+    st.write("""---""") 
     if st.session_state.buffer:   
         user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...", key="user_input_before")
         if user_question:
@@ -216,7 +217,8 @@ def main():
         
     if press_enter and st.session_state.text_detector:
         st.session_state.buffer = False
-        handle_userinput(user_question)  
+        with st.spinner("Untangling neurons..."):
+            handle_userinput(user_question)  
     if press_enter and not st.session_state.text_detector:
         st.warning("Please enter a prompt.")
 

@@ -77,7 +77,7 @@ def main():
     After 3 years of COVID-19 impacting the world, COVIDTrackr helps people understand the full timeline and situation globally. Users can explore the interactive dashboards to see different trends.
     """) 
 
-    st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 2023/08/25</p>''', unsafe_allow_html=True)
+    st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 23th Aug 2023</p>''', unsafe_allow_html=True)
 
     demo_gif = "https://i.imgur.com/WX7t4tF.gif"
     response = requests.get(demo_gif)

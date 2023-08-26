@@ -31,28 +31,30 @@ def main():
             data=file,
             file_name="covid-data.csv",
         )
-        
+
     st.markdown('''<p style="color:red;">CSV got you down? Lift your spirits with our phenomenal COVID data!</p>''', unsafe_allow_html=True)
 
     st.subheader('Your CSV')
     uploaded_file = st.file_uploader(":file_folder: Upload a CSV file for analysis", type=['csv'])
-
+    
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
-        st.write(df.head(5))
-        prompt = st.text_area("Enter your prompt:")
+        with st.spinner("Uploading CSV..."):
+            df = pd.read_csv(uploaded_file)
+            st.write(df.head(5))
+            st.write("""---""") 
+            prompt = st.text_area("Enter your prompt:")
 
-        if st.button("Generate"):
-            if prompt:
-                with st.spinner("Generating response..."):
-                    answer = pandas_ai.run(df,prompt)
-                    fig_number = plt.get_fignums()
-                    if fig_number:
-                        st.pyplot(plt.gcf())
-                    else:
-                        st.write(answer)
-            else:
-                st.warning("Please enter a prompt.")
+            if st.button("Generate"):
+                if prompt:
+                    with st.spinner("Generating response..."):
+                        answer = pandas_ai.run(df,prompt)
+                        fig_number = plt.get_fignums()
+                        if fig_number:
+                            st.pyplot(plt.gcf())
+                        else:
+                            st.write(answer)
+                else:
+                    st.warning("Please enter a prompt.")
                 
 if __name__ == '__main__':
     main()
