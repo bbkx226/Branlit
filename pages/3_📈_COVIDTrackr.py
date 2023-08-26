@@ -62,13 +62,26 @@ def main():
 
     filtered_df['month_year'] = filtered_df['date'].dt.to_period('M')
 
-    location_df = filtered_df.groupby('location').apply(lambda group: group[group['date'] == group['date'].max()])
-    continent_df = filtered_df.groupby('continent').apply(lambda group: group[group['date'] == group['date'].max()])
-    monthly_cases = filtered_df.groupby(['month_year', 'location'])['total_cases'].last().reset_index()
+    end_location_df = filtered_df.groupby('location').apply(lambda group: group[group['date'] == group['date'].max()])
+    start_location_df = filtered_df.groupby('location').apply(lambda group: group[group['date'] == group['date'].min()])
+
+    end_location_df['total_cases'] = end_location_df['total_cases'].fillna(0)
+    start_location_df['total_cases'] = start_location_df['total_cases'].fillna(0)
+
+    end_location_df = end_location_df.reset_index(drop=True)
+    start_location_df = start_location_df.reset_index(drop=True)
+
+    location_df = pd.merge(end_location_df, start_location_df, on='location')
+
+    location_df['total_cases_end'] = location_df['total_cases_x'] 
+    location_df['total_cases_start'] = location_df['total_cases_y']
+    location_df['total_cases_change'] = location_df['total_cases_end'] - location_df['total_cases_start']
 
     st.subheader("Location wise Cases")
-    fig = px.bar(location_df, x = "location", y = "total_cases", color = "location", template="seaborn")
+    fig = px.bar(location_df, x = "location", y = "total_cases_change", color = "location", template="seaborn")
     st.plotly_chart(fig, use_container_width=True, height=200)
+
+    continent_df = filtered_df.groupby('continent').apply(lambda group: group[group['date'] == group['date'].max()])
 
     st.subheader("Continent wise Cases")
     fig = px.pie(continent_df, values = "total_cases", names = "continent", hole = 0.5)
@@ -76,7 +89,9 @@ def main():
     st.plotly_chart(fig,use_container_width=True)
 
     st.subheader('Time Series Analysis')
+    monthly_cases = filtered_df.groupby(['month_year', 'location'])['total_cases'].last().reset_index()
     linechart = pd.DataFrame(monthly_cases.groupby(monthly_cases["month_year"].dt.strftime("%Y : %b"))["total_cases"].sum()).reset_index()
+    linechart = linechart.sort_values(by = "total_cases")
     fig2 = px.line(linechart, x = "month_year", y="total_cases", labels = {"total_cases": "Cases"},height=500, width = 1000,template="gridon")
     st.plotly_chart(fig2,use_container_width=True)    
 
