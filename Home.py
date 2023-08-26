@@ -94,45 +94,53 @@ def main():
 
     # Button 1
     with col1:
+        st.image('./files/aisummarizer.png', use_column_width=True) 
         st.markdown(
             """
-            <a href='https://brandongpt-summarizer.web.app/' class='custom-button' style='text-decoration: none;'>
-                <img src='./files/aisummarizer.png' class='button-image'/>
-                <p class='button-text'>Articles Summarizer</p>
-            </a>
+            <div style='text-align: center;'>
+                <a href='https://brandongpt-summarizer.web.app/' class='custom-button-1' style='text-decoration: none;'>
+                    <p class='button-text' style='font-size: 18px;'>Articles Summarizer</p>
+                </a>
+            </div>
             """
             , unsafe_allow_html=True)
 
     # Button 2
     with col2:
+        st.image('./files/aimage.png', use_column_width=True) 
         st.markdown(
             """
-            <a href='https://imagegeneratorai-6e92d.web.app/' class='custom-button' style='text-decoration: none;'>
-                <img src='./files/aimage.png' class='button-image'/>
-                <p class='button-text'>AI Image Generator</p>
-            </a>
+            <div style='text-align: center;'>
+                <a href='https://imagegeneratorai-6e92d.web.app/' class='custom-button' style='text-decoration: none;'>
+                    <p class='button-text' style='font-size: 18px;'>AI Image Generator</p>
+                </a>
+            </div>
             """
             , unsafe_allow_html=True)
 
     # Button 3
     with col1:
+        st.image('./files/quizbraniacbg.png', use_column_width=True) 
         st.markdown(
             """
-            <a href='https://quizbraniac.vercel.app/' class='custom-button' style='text-decoration: none;'>
-                <img src='./files/quizbraniacbg.png' class='button-image'/>
-                <p class='button-text'>QuizBraniac</p>
-            </a>
+            <div style='text-align: center;'>
+                <a href='https://quizbraniac.vercel.app/' class='custom-button' style='text-decoration: none;'>
+                    <p class='button-text' style='font-size: 18px;'>QuizBraniac</p>
+                </a>
+            </div>
             """
             , unsafe_allow_html=True)
 
     # Button 4
     with col2:
+        st.image('./files/ai.png', use_column_width=True) 
         st.markdown(
             """
-            <a href='https://ai-verse.vercel.app/' class='custom-button' style='text-decoration: none;'>
-                <img src='./files/ai.png' class='button-image'/>
-                <p class='button-text'>AI-verse Community</p>
-            </a>
+            <div style='text-align: center;'>
+                <a href='https://ai-verse.vercel.app/' class='custom-button' style='text-decoration: none;'>
+                    <p class='button-text' style='font-size: 18px;'>AI-verse Community</p>
+                </a>
+            </div>
             """
             , unsafe_allow_html=True)
 
