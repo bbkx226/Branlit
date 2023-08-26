@@ -82,8 +82,11 @@ def main():
     location_df['total_deaths_start'] = location_df['total_deaths_y']
     location_df['total_deaths_change'] = location_df['total_deaths_end'] - location_df['total_deaths_start']
 
-    st.subheader("Location wise Cases")
+    st.subheader("Analyzing COVID-19 Cases by Location")
     fig = px.bar(location_df, x="location", y="total_cases_change", color="location", template="seaborn")
+    # Update the y-axis label
+    fig.update_yaxes(title_text="Total Cases")
+    fig.update_xaxes(title_text="Country")
     st.plotly_chart(fig, use_container_width=True, height=200)
 
     # Group by continent and date to sum up the total cases for each country
@@ -107,16 +110,21 @@ def main():
     continent_df['total_cases_start'] = continent_df['total_cases_y']
     continent_df['total_cases_change'] = continent_df['total_cases_end'] - continent_df['total_cases_start']
 
-    st.subheader("Continent wise Cases")
+    st.subheader("Analyzing COVID-19 Cases by Continent")
     fig = px.pie(continent_df, values="total_cases_change", names="continent", hole=0.5)
     fig.update_traces(text=continent_df["continent"], textposition="outside")
     st.plotly_chart(fig, use_container_width=True)
 
-    st.subheader('Time Series Analysis')
+    st.subheader('Exploring the COVID-19 Pandemic through Time Series Analysis')
     monthly_cases = filtered_df.groupby(['month_year', 'location'])['total_cases'].last().reset_index()
     linechart = pd.DataFrame(monthly_cases.groupby(monthly_cases["month_year"].dt.strftime("%Y : %b"))["total_cases"].sum()).reset_index()
     linechart = linechart.sort_values(by="total_cases")
     fig2 = px.line(linechart, x="month_year", y="total_cases", labels={"total_cases": "Cases"}, height=500, width=1000, template="gridon")
+    # Update the x-axis label
+    fig2.update_xaxes(title_text="Month:Year")
+
+    # Update the y-axis label
+    fig2.update_yaxes(title_text="Total Cases")
     st.plotly_chart(fig2, use_container_width=True)
 
     end_location_df = filtered_df.groupby(['continent', 'location']).apply(lambda group: group[group['date'] == group['date'].max()])
@@ -141,16 +149,23 @@ def main():
     location_df['total_deaths_start'] = location_df['total_deaths_y']
     location_df['total_deaths_change'] = abs(location_df['total_deaths_end'] - location_df['total_deaths_start'])
 
-    st.subheader("Hierarchical view of Cases using TreeMap")
+    st.subheader("Visualizing Hierarchical Total Deaths with TreeMap: A Global Perspective")
+
     # Group by continent and location to sum up the total deaths and total cases for each location
     location_total_cases = location_df.groupby(['continent', 'location'])[['total_deaths_change', 'total_cases_change']].sum().reset_index()
+
     # Filter out rows with zero values
     location_total_cases = location_total_cases[(location_total_cases['total_deaths_change'] != 0) & (location_total_cases['total_cases_change'] != 0)]
+    location_total_cases['total_deaths_change'] = location_total_cases['total_deaths_change'].astype(int)
 
-    fig3 = px.treemap(location_total_cases, path=["continent", "location", "total_deaths_change"], values="total_deaths_change",
-                    hover_data=["total_deaths_change", "total_cases_change"], color="total_cases_change")
+    fig3 = px.treemap(location_total_cases, path=["continent", "location"], values="total_deaths_change",
+                    hover_data=["total_deaths_change", "total_cases_change"], color="total_deaths_change")
+
+    # Define a custom hover template with integer formatting
+    fig3.update_traces(hovertemplate='Total Deaths: %{customdata[0]:.0f}<br>Total Cases: %{customdata[1]:.0f}')
 
     fig3.update_layout(width=800, height=650)
+
     st.plotly_chart(fig3, use_container_width=True)
 
 if __name__ == '__main__':  # define code that should only run when the script is executed directly
