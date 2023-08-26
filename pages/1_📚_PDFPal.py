@@ -177,8 +177,8 @@ def main():
 
     st.header("Ask anything. Know everything. :brain:")
     st.write("""---""") 
-    os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
-    with open("AWS_certification_paths.pdf", "rb") as file:
+
+    with open("../files/AWS_certification_paths.pdf", "rb") as file:
         st.download_button(
             label="Download PDF",
             data=file,
