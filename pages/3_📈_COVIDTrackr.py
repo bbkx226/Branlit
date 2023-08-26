@@ -81,10 +81,29 @@ def main():
     fig = px.bar(location_df, x = "location", y = "total_cases_change", color = "location", template="seaborn")
     st.plotly_chart(fig, use_container_width=True, height=200)
 
-    continent_df = filtered_df.groupby('continent').apply(lambda group: group[group['date'] == group['date'].max()])
+    # Group by continent and date to sum up the total cases for each country
+    continent_total_cases = filtered_df.groupby(['continent', 'date'])['total_cases'].sum().reset_index()
+
+    # Find the latest date for each continent
+    end_continent_df = continent_total_cases.groupby('continent').apply(lambda group: group[group['date'] == group['date'].max()])
+
+    # Find the earliest date for each continent
+    start_continent_df = continent_total_cases.groupby('continent').apply(lambda group: group[group['date'] == group['date'].min()])
+
+    end_continent_df['total_cases'] = end_continent_df['total_cases'].fillna(0)
+    start_continent_df['total_cases'] = start_continent_df['total_cases'].fillna(0)
+
+    end_continent_df = end_continent_df.reset_index(drop=True)
+    start_continent_df = start_continent_df.reset_index(drop=True)
+
+    continent_df = pd.merge(end_continent_df, start_continent_df, on='continent')
+
+    continent_df['total_cases_end'] = continent_df['total_cases_x'] 
+    continent_df['total_cases_start'] = continent_df['total_cases_y']
+    continent_df['total_cases_change'] = continent_df['total_cases_end'] - continent_df['total_cases_start']
 
     st.subheader("Continent wise Cases")
-    fig = px.pie(continent_df, values = "total_cases", names = "continent", hole = 0.5)
+    fig = px.pie(continent_df, values = "total_cases_change", names = "continent", hole = 0.5)
     fig.update_traces(text = continent_df["continent"], textposition = "outside")
     st.plotly_chart(fig,use_container_width=True)
 
