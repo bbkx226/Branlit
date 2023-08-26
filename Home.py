@@ -29,7 +29,7 @@ def main():
     st.markdown("<h3 style='text-align: center; color: green;'>Feature #1 - PDFPal 📚</h3>", unsafe_allow_html=True)
 
     st.write("""
-    PDFPal allows you to upload multiple PDFs and ask questions about them. The AI will 
+    :one: PDFPal allows you to upload multiple PDFs and ask questions about them. The AI will 
     process the PDFs and give you answers!
     """)
 
@@ -49,7 +49,7 @@ def main():
     st.markdown("<h3 style='text-align: center; color: green;'>Feature #2 - BranHub</h3>", unsafe_allow_html=True)
 
     st.write("""
-    BranHub allows you to analyze and get insights from CSV data. Upload a CSV file and ask questions - 
+    :two: BranHub allows you to analyze and get insights from CSV data. Upload a CSV file and ask questions - 
     the AI will process the data and provide answers!
     """)
 
@@ -69,7 +69,7 @@ def main():
     st.markdown("<h3 style='text-align: center; color: green;'>Extra Feature - COVIDTrackr</h3>", unsafe_allow_html=True)
 
     st.write("""
-    COVIDTrackr is an analytics dashboard tracking COVID-19 data since 2020. It visualizes cases, deaths, and other metrics across countries and continents.
+    :three: COVIDTrackr is an analytics dashboard tracking COVID-19 data since 2020. It visualizes cases, deaths, and other metrics across countries and continents.
     """)
 
     st.write("""
@@ -143,6 +143,31 @@ def main():
             </div>
             """
             , unsafe_allow_html=True)
+
+    # Define the JavaScript code for updating the year
+    js_code = """
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+
+        // Display the current year in the footer
+        document.getElementById("year").textContent = currentYear;
+    </script>
+    """
+
+    # Add the JavaScript code to the app
+    st.markdown(js_code, unsafe_allow_html=True)
+
+    st.markdown("---")
+    # Create a footer with the copyright text
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <p>&copy; <span id="year">2023</span> Branlit. All Rights Reserved.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 if __name__ == '__main__':
     main()
