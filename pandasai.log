@@ -234,3 +234,481 @@ def analyze_data(dfs: list[pd.DataFrame]) ->dict:
 result = analyze_data(dfs)
         ```
 2023-08-26 14:45:13 [WARNING] Error of executing code
+2023-08-26 15:27:38 [INFO] Question: Generate a plot to show total death cases of each continent
+2023-08-26 15:27:38 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:27:38 [INFO] Prompt ID: fbeb8ae9-7b36-4eef-a578-01b297375746
+2023-08-26 15:27:48 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    # Group by continent and calculate the sum of total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:27:48 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:27:49 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:27:49 [INFO] Executed in: 10.316795349121094s
+2023-08-26 15:30:36 [INFO] Question: Generate a plot to show total death cases of each continent
+2023-08-26 15:30:36 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:30:36 [INFO] Prompt ID: c1299b63-7f92-4922-98b6-2a6f43dbad39
+2023-08-26 15:30:36 [INFO] Using cached response
+2023-08-26 15:30:36 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    # Group by continent and calculate the sum of total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:30:36 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:30:36 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:30:36 [INFO] Executed in: 0.18401598930358887s
+2023-08-26 15:35:17 [INFO] Question: Generate a plot to show the total vaccinated person of each continents
+2023-08-26 15:35:17 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:35:17 [INFO] Prompt ID: e3e84340-7e24-4874-be5e-575ecea3197f
+2023-08-26 15:35:27 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Combine all dataframes into one
+    df = pd.concat(dfs)
+
+    # Group by continent and calculate the total vaccinated person
+    total_vaccinated = df.groupby('continent')['people_vaccinated'].sum()
+
+    # Create a bar plot to visualize the total vaccinated person of each continent
+    plt.figure(figsize=(10, 6))
+    total_vaccinated.plot(kind='bar')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Vaccinated')
+    plt.title('Total Vaccinated Person of Each Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:35:27 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = pd.concat(dfs)
+    total_vaccinated = df.groupby('continent')['people_vaccinated'].sum()
+    plt.figure(figsize=(10, 6))
+    total_vaccinated.plot(kind='bar')
+    plt.xlabel('Continent')
+    plt.ylabel('Total Vaccinated')
+    plt.title('Total Vaccinated Person of Each Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:35:27 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:35:27 [INFO] Executed in: 10.322790622711182s
+2023-08-26 15:37:27 [INFO] Question: which country is more likely to survive?
+2023-08-26 15:37:27 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:37:27 [INFO] Prompt ID: 473623d5-ee7f-40ea-a813-2cbad9059aed
+2023-08-26 15:37:37 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Filter the dataframe to include only the necessary columns
+    df = dfs[0][['location', 'total_cases', 'total_deaths', 'population', 'life_expectancy']]
+    
+    # Calculate the survival rate for each country
+    df['survival_rate'] = (df['total_cases'] - df['total_deaths']) / df['population']
+    
+    # Find the country with the highest survival rate
+    country_with_highest_survival_rate = df.loc[df['survival_rate'].idxmax(), 'location']
+    
+    # Return the result
+    return {"type": "text", "value": f"The country with the highest survival rate is {country_with_highest_survival_rate}."}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:37:37 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0][['location', 'total_cases', 'total_deaths', 'population', 'life_expectancy']]
+    df['survival_rate'] = (df['total_cases'] - df['total_deaths']) / df['population']
+    country_with_highest_survival_rate = df.loc[df['survival_rate'].idxmax(), 'location']
+    return {'type': 'text', 'value': f'The country with the highest survival rate is {country_with_highest_survival_rate}.'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:37:37 [INFO] Answer: {'type': 'text', 'value': 'The country with the highest survival rate is Cyprus.'}
+2023-08-26 15:37:37 [INFO] Executed in: 10.125800848007202s
+2023-08-26 15:38:00 [INFO] Question: Generate a plot that shows the total death case of each continent
+2023-08-26 15:38:00 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:38:00 [INFO] Prompt ID: b3cd2181-a649-495b-a1ef-f3a50905cb63
+2023-08-26 15:38:11 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    # Group by continent and calculate the sum of total_deaths
+    df_grouped = df.groupby('continent')['total_deaths'].sum().reset_index()
+    
+    # Create a bar plot
+    plt.figure(figsize=(10, 6))
+    plt.bar(df_grouped['continent'], df_grouped['total_deaths'])
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    plt.xticks(rotation=45)
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:38:11 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    df_grouped = df.groupby('continent')['total_deaths'].sum().reset_index()
+    plt.figure(figsize=(10, 6))
+    plt.bar(df_grouped['continent'], df_grouped['total_deaths'])
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Death Cases by Continent')
+    plt.xticks(rotation=45)
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:38:12 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:38:12 [INFO] Executed in: 11.285982608795166s
+2023-08-26 15:46:48 [INFO] Question: Generate a plot to show total death of each continent
+2023-08-26 15:46:48 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:46:48 [INFO] Prompt ID: 57a6e773-2d48-4ad7-8bfc-ebcf32fa88e6
+2023-08-26 15:46:59 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Group by continent and calculate the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:46:59 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:46:59 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:46:59 [INFO] Executed in: 11.05770754814148s
+2023-08-26 15:48:57 [INFO] Question: Generate a plot to show total death of each continent
+2023-08-26 15:48:57 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:48:57 [INFO] Prompt ID: db1709c4-2b1a-49aa-a76a-62fff45312b0
+2023-08-26 15:48:57 [INFO] Using cached response
+2023-08-26 15:48:57 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Group by continent and calculate the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:48:57 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:48:57 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:48:57 [INFO] Executed in: 0.416961669921875s
+2023-08-26 15:51:15 [INFO] Question: Generate a plot that shows the total death of each continent
+2023-08-26 15:51:15 [INFO] Running PandasAI with openai LLM...
+2023-08-26 15:51:15 [INFO] Prompt ID: 49c30063-3000-4e58-8d13-4b791d84ef70
+2023-08-26 15:51:25 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Group the data by continent and calculate the total deaths
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    
+    # Create a bar plot of the total deaths by continent
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.xticks(rotation=45)
+    
+    # Save the plot to an image file
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the path of the plot as the output
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-26 15:51:25 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    total_deaths_by_continent = df.groupby('continent')['total_deaths'].sum()
+    plt.bar(total_deaths_by_continent.index, total_deaths_by_continent.values)
+    plt.xlabel('Continent')
+    plt.ylabel('Total Deaths')
+    plt.title('Total Deaths by Continent')
+    plt.xticks(rotation=45)
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-26 15:51:25 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-26 15:51:25 [INFO] Executed in: 10.354381322860718s
