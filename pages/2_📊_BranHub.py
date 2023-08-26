@@ -4,30 +4,23 @@ import streamlit as st
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
-import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 import warnings
-import glob  # Import glob to work with file paths
-import os.path  # Import os.path to handle file paths
 
 warnings.filterwarnings("ignore")
 
 def main():
+    st.set_page_config(page_title="BranHub", page_icon="📊")
     load_dotenv()
-    matplotlib.use('Agg')
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
     pandas_ai = PandasAI(llm, save_charts=True)
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.set_page_config(page_title="BranHub", page_icon="📊")
-    st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
+    st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
     st.title("📊 BranHub: The AI Data Analyst")
     st.header("PDFs In, Answers Out! ⚡")
     st.write("""---""") 
-
-    # Define your file path and folder
-    graph_folder_path = "./exports/charts/"  # Update with the correct folder path
-    count_files = len(glob.glob(os.path.join(graph_folder_path, '*.png')))  # Count the PNG files
 
     with open("./files/covid-data.csv", "rb") as file:
         st.download_button(
@@ -50,15 +43,11 @@ def main():
         if st.button("Generate"):
             if prompt:
                 with st.spinner("Generating response..."):
-                    answer = pandas_ai.run(df,prompt)
-                    current_file_count = len(glob.glob(os.path.join(graph_folder_path, '*.png')))  # Count the PNG files again
-                    if current_file_count > count_files:
-                        count_files = current_file_count
-                        st.write(answer)
-                        list_of_files = glob.glob(os.path.join(graph_folder_path, '*.png')) 
-                        st.write(list_of_files)
-                        latest_file = max(list_of_files, key=os.path.getctime)
-                        st.image(latest_file)
+                    answer = pandas_ai.run(st.session_state.df,prompt)
+
+                    fig_number = plt.get_fignums()
+                    if fig_number:
+                        st.pyplot(plt.gcf())
                     else:
                         st.write(answer)
             else:
