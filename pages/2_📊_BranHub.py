@@ -17,15 +17,14 @@ def main():
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
     pandas_ai = PandasAI(llm)
-
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.set_page_config(page_title="BranHub", page_icon="📊")
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
     st.title("📊 BranHub: The AI Data Analyst")
     st.header("PDFs In, Answers Out! ⚡")
     st.write("""---""") 
 
-    os.chdir(r"C:\Users\bbkx2\Downloads\Projects\Branlit\files")
-    with open("covid-data.csv", "rb") as file:
+    with open("./files/covid-data.csv", "rb") as file:
         st.download_button(
             label="Download CSV",
             data=file,
@@ -50,7 +49,7 @@ def main():
                         answer = pandas_ai.run(df,prompt)
                         fig_number = plt.get_fignums()
                         if fig_number:
-                            st.pyplot(plt.gcf())
+                            st.pyplot()
                         else:
                             st.write(answer)
                 else:
