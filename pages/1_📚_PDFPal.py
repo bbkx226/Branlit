@@ -178,7 +178,7 @@ def main():
     st.header("Ask anything. Know everything. :brain:")
     st.write("""---""") 
 
-    with open("../files/AWS_certification_paths.pdf", "rb") as file:
+    with open("./files/AWS_certification_paths.pdf", "rb") as file:
         st.download_button(
             label="Download PDF",
             data=file,
