@@ -40,6 +40,7 @@ def main():
 
     st.markdown('> "I was totally confused by my essay assignment. The prompt was vague and the requirements confusing. I uploaded the PDF to PDFPal and asked it to explain the expectations and give tips. PDFPal clarified everything for me in simple steps - now I know exactly how to ace this essay!"')
 
+    st.subheader("Here's how:")
     video_file = open('./files/pdfpal.mkv', 'rb')
     video_bytes = video_file.read()
     st.video(video_bytes)
@@ -60,6 +61,7 @@ def main():
 
     st.markdown('> "I was analyzing customer data for a class project and felt totally lost in the numbers. Then I discovered BranHub! I uploaded my CSV file and started asking questions. BranHub found insights I never would have seen on my own. It perfectly summarized retention drivers and churn predictors!"')
 
+    st.subheader("Here's how:")
     video_file = open('./files/branhub.mp4', 'rb')
     video_bytes = video_file.read()
     st.video(video_bytes)
@@ -78,6 +80,7 @@ def main():
 
     st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 23th Aug 2023</p>''', unsafe_allow_html=True)
     
+    st.subheader("Here's how:")
     video_file = open('./files/covidtrackr.mkv', 'rb')
     video_bytes = video_file.read()
     st.video(video_bytes)
