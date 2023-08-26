@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 def main():
     
     load_dotenv()
-    matplotlib.use('TkAgg')
+    matplotlib.use('Agg')
     API_KEY = os.environ["OPENAI_API_KEY"]
     llm = OpenAI(api_token=API_KEY)
     pandas_ai = PandasAI(llm)
