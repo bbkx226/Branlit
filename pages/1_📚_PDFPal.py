@@ -210,7 +210,7 @@ def main():
             
     st.write("""---""") 
     if st.session_state.buffer:   
-        user_question = st.text_input("Pick the brain of your PDFs:", placeholder="Ask me anything...", key="user_input_before")
+        user_question = st.text_input("Delve into the insights within your PDFs:", placeholder="Ask me anything...", key="user_input_before")
         if user_question:
             st.session_state.text_detector = True
         press_enter = st.button("Enter!")

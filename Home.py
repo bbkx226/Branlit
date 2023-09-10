@@ -4,6 +4,8 @@ import requests
 import io
 
 def main():
+    disclaimer_text = "***Disclaimer: We are not responsible for any damages caused to your academic reputation in any form of plagiarism***"
+    
     st.set_page_config(page_title="Branlit", page_icon=":brain:") 
 
     st.markdown("<h1 style='text-align: center; color: green;'>Welcome to Branlit! 🧠</h1>", unsafe_allow_html=True)
@@ -44,6 +46,7 @@ def main():
     video_file = open('./files/pdfpal.mkv', 'rb')
     video_bytes = video_file.read()
     st.video(video_bytes)
+    st.markdown(f'<font color="red">{disclaimer_text}</font>', unsafe_allow_html=True)
     st.markdown("---")
 
     # Feature 2 - BranHub
@@ -65,6 +68,7 @@ def main():
     video_file = open('./files/branhub.mp4', 'rb')
     video_bytes = video_file.read()
     st.video(video_bytes)
+    st.markdown(f'<font color="red">{disclaimer_text}</font>', unsafe_allow_html=True)
     st.markdown("---")
 
     # Extra Feature - COVIDTrackr

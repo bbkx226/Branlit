@@ -21,7 +21,7 @@ def main():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
     st.title("📊 BranHub: The AI Data Analyst")
-    st.header("PDFs In, Answers Out! ⚡")
+    st.header("CSVs In, Answers Out! ⚡")
     st.write("""---""") 
 
     with open("./files/covid-data.csv", "rb") as file:
