@@ -1,7 +1,4 @@
 import streamlit as st
-from PIL import Image
-import requests
-import io
 
 def main():
     disclaimer_text = "***Disclaimer: We are not responsible for any damages caused to your academic reputation in any form of plagiarism***"
@@ -75,11 +72,11 @@ def main():
     st.markdown("<h3 style='text-align: center; color: green;'>Extra Feature - COVIDTrackr</h3>", unsafe_allow_html=True)
 
     st.write("""
-    :three: COVIDTrackr is an analytics dashboard tracking COVID-19 data since 2020. It visualizes cases, deaths, and other metrics across countries and continents.
+    :three: COVIDTrackr is an invaluable addition to Branlit, tailored to the unique needs of students. This analytics dashboard allows students to gain insights and understanding of the COVID-19 pandemic's impact on their academic journey. By visualizing COVID-19 data since 2020, students can track the effects of the pandemic on education, offering a comprehensive view of cases, deaths, and other relevant metrics.
     """)
 
     st.write("""
-    After 3 years of COVID-19 impacting the world, COVIDTrackr helps people understand the full timeline and situation globally. Users can explore the interactive dashboards to see different trends.
+    Given the disruptions caused by the pandemic, COVIDTrackr serves as a critical resource for students to comprehend the broader context of the challenges they have faced in their academic pursuits.
     """) 
 
     st.markdown('''<p style="color:red;">*Dataset used in this dashboard is only up to 23th Aug 2023</p>''', unsafe_allow_html=True)

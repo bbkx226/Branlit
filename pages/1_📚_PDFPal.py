@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 from streamlit import session_state
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
