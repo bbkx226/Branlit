@@ -2028,3 +2028,157 @@ result = analyze_data(dfs)
         ```
 2023-08-26 16:33:49 [INFO] Answer: {'type': 'text', 'value': 'The country with the highest survival rate is Cyprus.'}
 2023-08-26 16:33:49 [INFO] Executed in: 13.263951063156128s
+2023-09-11 13:40:14 [INFO] Question: What's the total cases of dengue in 2018
+2023-09-11 13:40:14 [INFO] Running PandasAI with openai LLM...
+2023-09-11 13:40:14 [INFO] Prompt ID: 110eb7d1-b373-4f28-aada-81899b32f672
+2023-09-11 13:40:28 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Filter the dataframe to include only rows with TAHUN equal to 2018
+    df_2018 = dfs[0][dfs[0]['TAHUN'] == 2018]
+    
+    # Calculate the total cases of dengue in 2018 by summing up the values in the relevant columns
+    total_cases_2018 = df_2018[['JOHOR', 'KEDAH', 'KELANTAN', 'MELAKA', 'NEGERI SEMBILAN', 'PAHANG', 'PERAK', 'PERLIS', 'PULAU PINANG', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERENGGANU', 'WP KUALA LUMPUR', 'WP LABUAN']].sum().sum()
+    
+    # Return the result as a dictionary
+    return {"type": "number", "value": total_cases_2018}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-09-11 13:40:28 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df_2018 = dfs[0][dfs[0]['TAHUN'] == 2018]
+    total_cases_2018 = df_2018[['JOHOR', 'KEDAH', 'KELANTAN', 'MELAKA', 'NEGERI SEMBILAN', 'PAHANG', 'PERAK', 'PERLIS', 'PULAU PINANG', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERENGGANU', 'WP KUALA LUMPUR', 'WP LABUAN']].sum().sum()
+    return {'type': 'number', 'value': total_cases_2018}
+
+
+result = analyze_data(dfs)
+        ```
+2023-09-11 13:40:28 [INFO] Answer: {'type': 'number', 'value': 406}
+2023-09-11 13:40:28 [INFO] Executed in: 13.781995058059692s
+2023-09-11 13:40:40 [INFO] Question: What is this CSV about?
+2023-09-11 13:40:40 [INFO] Running PandasAI with openai LLM...
+2023-09-11 13:40:40 [INFO] Prompt ID: 63b76385-17e8-474f-a630-d4be09436e24
+2023-09-11 13:40:48 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    # Prepare: No preprocessing or cleaning needed
+    
+    # Process: No data manipulation needed
+    
+    # Analyze: Get the metadata of the first dataframe
+    metadata = dfs[0].columns.tolist()
+    
+    # Output: Return the metadata as a dataframe
+    return {"type": "dataframe", "value": pd.DataFrame(metadata)}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-09-11 13:40:48 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    metadata = dfs[0].columns.tolist()
+    return {'type': 'dataframe', 'value': pd.DataFrame(metadata)}
+
+
+result = analyze_data(dfs)
+        ```
+2023-09-11 13:40:48 [INFO] Answer: {'type': 'dataframe', 'value':                   0
+0             TAHUN
+1       MINGGU EPID
+2             JOHOR
+3             KEDAH
+4          KELANTAN
+5            MELAKA
+6   NEGERI SEMBILAN
+7            PAHANG
+8             PERAK
+9            PERLIS
+10     PULAU PINANG
+11            SABAH
+12          SARAWAK
+13         SELANGOR
+14       TERENGGANU
+15  WP KUALA LUMPUR
+16        WP LABUAN}
+2023-09-11 13:40:48 [INFO] Executed in: 8.236079454421997s
+2023-09-11 13:41:31 [INFO] Question: what is this CSV about?
+2023-09-11 13:41:31 [INFO] Running PandasAI with openai LLM...
+2023-09-11 13:41:31 [INFO] Prompt ID: 70a24f13-c5b6-4d5d-9565-1a54f0e5f546
+2023-09-11 13:41:42 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Get the metadata of the first dataframe
+    metadata = dfs[0].columns.tolist()
+    
+    # Prepare the output text
+    output_text = "This CSV contains data about COVID-19 cases and related information.\n"
+    output_text += "The columns in the dataset are as follows:\n"
+    output_text += "\n".join(metadata)
+    
+    # Return the output as text
+    return {"type": "text", "value": output_text}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-09-11 13:41:42 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    metadata = dfs[0].columns.tolist()
+    output_text = 'This CSV contains data about COVID-19 cases and related information.\n'
+    output_text += 'The columns in the dataset are as follows:\n'
+    output_text += '\n'.join(metadata)
+    return {'type': 'text', 'value': output_text}
+
+
+result = analyze_data(dfs)
+        ```
+2023-09-11 13:41:42 [INFO] Answer: {'type': 'text', 'value': 'This CSV contains data about COVID-19 cases and related information.\nThe columns in the dataset are as follows:\niso_code\ncontinent\nlocation\ndate\ntotal_cases\nnew_cases\nnew_cases_smoothed\ntotal_deaths\nnew_deaths\nnew_deaths_smoothed\ntotal_cases_per_million\nnew_cases_per_million\nnew_cases_smoothed_per_million\ntotal_deaths_per_million\nnew_deaths_per_million\nnew_deaths_smoothed_per_million\nreproduction_rate\nicu_patients\nicu_patients_per_million\nhosp_patients\nhosp_patients_per_million\nweekly_icu_admissions\nweekly_icu_admissions_per_million\nweekly_hosp_admissions\nweekly_hosp_admissions_per_million\ntotal_tests\nnew_tests\ntotal_tests_per_thousand\nnew_tests_per_thousand\nnew_tests_smoothed\nnew_tests_smoothed_per_thousand\npositive_rate\ntests_per_case\ntests_units\ntotal_vaccinations\npeople_vaccinated\npeople_fully_vaccinated\ntotal_boosters\nnew_vaccinations\nnew_vaccinations_smoothed\ntotal_vaccinations_per_hundred\npeople_vaccinated_per_hundred\npeople_fully_vaccinated_per_hundred\ntotal_boosters_per_hundred\nnew_vaccinations_smoothed_per_million\nnew_people_vaccinated_smoothed\nnew_people_vaccinated_smoothed_per_hundred\nstringency_index\npopulation_density\nmedian_age\naged_65_older\naged_70_older\ngdp_per_capita\nextreme_poverty\ncardiovasc_death_rate\ndiabetes_prevalence\nfemale_smokers\nmale_smokers\nhandwashing_facilities\nhospital_beds_per_thousand\nlife_expectancy\nhuman_development_index\npopulation\nexcess_mortality_cumulative_absolute\nexcess_mortality_cumulative\nexcess_mortality\nexcess_mortality_cumulative_per_million'}
+2023-09-11 13:41:42 [INFO] Executed in: 11.086899995803833s
