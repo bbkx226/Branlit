@@ -2182,3 +2182,88 @@ result = analyze_data(dfs)
         ```
 2023-09-11 13:41:42 [INFO] Answer: {'type': 'text', 'value': 'This CSV contains data about COVID-19 cases and related information.\nThe columns in the dataset are as follows:\niso_code\ncontinent\nlocation\ndate\ntotal_cases\nnew_cases\nnew_cases_smoothed\ntotal_deaths\nnew_deaths\nnew_deaths_smoothed\ntotal_cases_per_million\nnew_cases_per_million\nnew_cases_smoothed_per_million\ntotal_deaths_per_million\nnew_deaths_per_million\nnew_deaths_smoothed_per_million\nreproduction_rate\nicu_patients\nicu_patients_per_million\nhosp_patients\nhosp_patients_per_million\nweekly_icu_admissions\nweekly_icu_admissions_per_million\nweekly_hosp_admissions\nweekly_hosp_admissions_per_million\ntotal_tests\nnew_tests\ntotal_tests_per_thousand\nnew_tests_per_thousand\nnew_tests_smoothed\nnew_tests_smoothed_per_thousand\npositive_rate\ntests_per_case\ntests_units\ntotal_vaccinations\npeople_vaccinated\npeople_fully_vaccinated\ntotal_boosters\nnew_vaccinations\nnew_vaccinations_smoothed\ntotal_vaccinations_per_hundred\npeople_vaccinated_per_hundred\npeople_fully_vaccinated_per_hundred\ntotal_boosters_per_hundred\nnew_vaccinations_smoothed_per_million\nnew_people_vaccinated_smoothed\nnew_people_vaccinated_smoothed_per_hundred\nstringency_index\npopulation_density\nmedian_age\naged_65_older\naged_70_older\ngdp_per_capita\nextreme_poverty\ncardiovasc_death_rate\ndiabetes_prevalence\nfemale_smokers\nmale_smokers\nhandwashing_facilities\nhospital_beds_per_thousand\nlife_expectancy\nhuman_development_index\npopulation\nexcess_mortality_cumulative_absolute\nexcess_mortality_cumulative\nexcess_mortality\nexcess_mortality_cumulative_per_million'}
 2023-09-11 13:41:42 [INFO] Executed in: 11.086899995803833s
+2023-10-04 15:41:48 [INFO] Question: Which country has the most death cases
+2023-10-04 15:41:48 [INFO] Running PandasAI with openai LLM...
+2023-10-04 15:41:48 [INFO] Prompt ID: 4948986b-5c03-4748-9355-c39c46ba2ce2
+2023-10-04 15:41:55 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Process
+    # Group by country and sum the total deaths
+    df = dfs[0].groupby('location')['total_deaths'].sum().reset_index()
+    
+    # Find the country with the most death cases
+    max_deaths = df['total_deaths'].max()
+    country_with_most_deaths = df[df['total_deaths'] == max_deaths]['location'].values[0]
+    
+    # Output
+    return {"type": "text", "value": f"The country with the most death cases is {country_with_most_deaths}."}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-10-04 15:41:55 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0].groupby('location')['total_deaths'].sum().reset_index()
+    max_deaths = df['total_deaths'].max()
+    country_with_most_deaths = df[df['total_deaths'] == max_deaths]['location'].values[0]
+    return {'type': 'text', 'value': f'The country with the most death cases is {country_with_most_deaths}.'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-10-04 15:41:55 [INFO] Answer: {'type': 'text', 'value': 'The country with the most death cases is World.'}
+2023-10-04 15:41:55 [INFO] Executed in: 6.621955871582031s
+2023-10-04 15:42:06 [INFO] Question: Besides world?
+2023-10-04 15:42:06 [INFO] Running PandasAI with openai LLM...
+2023-10-04 15:42:06 [INFO] Prompt ID: 7e12423b-30a9-449c-b9a6-1187c601edc1
+2023-10-04 15:42:13 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Filter out the dataframe for locations other than "World"
+    df = dfs[0][dfs[0]['location'] != 'World']
+    
+    # Code goes here (do not add comments)
+    
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-10-04 15:42:13 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0][dfs[0]['location'] != 'World']
+
+
+result = analyze_data(dfs)
+        ```
+2023-10-04 15:42:13 [INFO] Executed in: 6.470301151275635s

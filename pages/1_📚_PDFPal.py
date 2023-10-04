@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit import session_state
 from dotenv import load_dotenv
-from PyPDF2 import PdfReader
+import PyPDF2
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
@@ -108,11 +108,11 @@ text_input_css = """
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf_doc in pdf_docs:
-        pdf_reader = PdfReader(pdf_doc)
+        pdf_reader = PyPDF2.PdfReader(pdf_doc)
         for page in pdf_reader.pages:
             text += page.extract_text()
     return text
-
+   
 def get_text_chunks(raw_text):
     # To ensure the model gets the meaning of the full sentence
     text_splitter = CharacterTextSplitter(
@@ -188,38 +188,42 @@ def main():
 
     pdf_docs = st.file_uploader("Drop files, click Process, watch our AI work its magic!", accept_multiple_files=True)
 
-    if pdf_docs:
-        press_button = st.button("Process")
+    if pdf_docs is not None and 1 <= len(pdf_docs) <= 3:
+        if pdf_docs:
+            press_button = st.button("Process")
 
-    if press_button:
-        with st.spinner("Processing your documents..."):
-            # Get PDF text
-            raw_text = get_pdf_text(pdf_docs)
+        if press_button:
+            with st.spinner("Processing your documents..."):
+                # Get PDF text
+                raw_text = get_pdf_text(pdf_docs)
 
-            # Get the text chunks
-            text_chunks = get_text_chunks(raw_text)
+                # Get the text chunks
+                text_chunks = get_text_chunks(raw_text)
 
-            # Create Vector Store
-            vectorstore = get_vectorstore(text_chunks)
+                # Create Vector Store
+                vectorstore = get_vectorstore(text_chunks)
 
-            # Create Conversation chain
-            st.session_state.conversation = get_conversation_chain(vectorstore)
+                # Create Conversation chain
+                st.session_state.conversation = get_conversation_chain(vectorstore)
 
-            st.session_state.buffer = True
+                st.session_state.buffer = True
+                
+        st.write("""---""") 
+        if st.session_state.conversation:   
+            user_question = st.text_input("Delve into the insights within your PDFs:", placeholder="Ask me anything...", key="user_input_before")
+            if user_question:
+                st.session_state.text_detector = True
+            press_enter = st.button("Enter!")
             
-    st.write("""---""") 
-    if st.session_state.conversation:   
-        user_question = st.text_input("Delve into the insights within your PDFs:", placeholder="Ask me anything...", key="user_input_before")
-        if user_question:
-            st.session_state.text_detector = True
-        press_enter = st.button("Enter!")
-        
-    if press_enter and st.session_state.text_detector:
-        st.session_state.buffer = False
-        with st.spinner("Untangling neurons..."):
-            handle_userinput(user_question)  
-    if press_enter and not st.session_state.text_detector:
-        st.warning("Please enter a prompt.")
+        if press_enter and st.session_state.text_detector:
+            st.session_state.buffer = False
+            with st.spinner("Untangling neurons..."):
+                handle_userinput(user_question)  
+        if press_enter and not st.session_state.text_detector:
+            st.warning("Please enter a prompt.")
+    else:
+        st.warning("*** Maximum of three PDFs can be uploaded simultaneously ***")
+        st.warning("*** For PDF reprocessing or adding additional files, simply hit that refresh button! ***")
 
 if __name__ == '__main__': # define code that should only run when the script is executed directly
     main()
